@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import logo from "../image/logo.svg"
+import logo from "../../image/logo.svg"
 import {Link} from "react-router-dom";
 class HomePage extends Component {
     render(){
@@ -22,7 +22,7 @@ class SonComponent extends Component {
   render () {
     return (
         <div>
-            <Link to="/page1">蜡笔小新  oh yeah!</Link>
+            <Link to="/movie">蜡笔小新  oh yeah!</Link>
         </div>
     )
   }
@@ -31,7 +31,7 @@ class Son1Component extends Component {
   render () {
     return (
         <div>
-           <Link to="/page2">吃货的ee我</Link>
+           <Link to="/book">吃货的ee我</Link>
         </div>
     )
   }

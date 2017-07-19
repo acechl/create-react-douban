@@ -1,39 +1,17 @@
 import React, {Component} from "react";
-import logo from "../../image/logo.svg"
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
+import Header from "../../common/header";
+import Classify from "../../common/classify"
 class HomePage extends Component {
     render(){
         return (
             <div>
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Welcome to React</h2>
-                </div>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.    
-                </p>
-                <SonComponent></SonComponent>
-                <Son1Component></Son1Component>
+                <Header></Header>
+                <Classify name="即将上映"></Classify>
+                <Classify name="北美票房榜"></Classify>
+                <Classify name="新片榜"></Classify>
             </div>
         )
     }
-}
-class SonComponent extends Component {
-  render () {
-    return (
-        <div>
-            <Link to="/movie">蜡笔小新  oh yeah!</Link>
-        </div>
-    )
-  }
-}
-class Son1Component extends Component {
-  render () {
-    return (
-        <div>
-           <Link to="/book">吃货的ee我</Link>
-        </div>
-    )
-  }
 }
 export default HomePage;

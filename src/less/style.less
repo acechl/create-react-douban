@@ -1,0 +1,98 @@
+/*公共部分 begin*/
+ul,ol,li,div,p,a,body,html,img,span,input,button {
+    padding: 0;
+    margin: 0;
+}
+ul,ol,li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: @color;
+}
+html body {
+    padding: 0 0.25rem;
+    font-size: 12px;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+    display: block;
+}
+.pr {
+    position:relative;
+}
+.pa {
+    position: absolute;
+}
+.pf {
+    position: fixed;
+}
+/*公共部分 end*/
+/*less公用函数 begin*/
+
+@color: #000;
+@w46: 46px;
+@h22: 22px;
+.widthHeight(@width,@height){
+    width: @width;
+    height: @height;
+}
+.borderBottom(@width,@style,@color){
+    border-bottom: @width @style @color;
+}
+.bottomTop(@width,@style,@color){
+    border-top: @width @style @color;
+}
+.bottomLeft(@width,@style,@color){
+    border-left: @width @style @color;
+}
+.bottomRight(@width,@style,@color) {
+    border-right: @width @style @color;
+}
+.border(@width,@style,@color){
+    border: @width @style @color;
+}
+/*less公用函数 end*/
+/*header 部分 begin*/
+.header {
+    .borderBottom(1px,solid,#f3f3f3);
+    .widthHeight(100%,50px);
+    .logo {
+        .widthHeight(46px,22px);
+        background: url("../image/douban.png");
+        display: block;
+        background-size: 100%;
+        margin-top: 15px;
+    }
+    div {
+        line-height: 50px; 
+        li {
+            float: left;
+            font-size: 0.18rem;
+            margin-left: 0.3rem;
+            a {
+                font-size: 14px;
+            }
+            .search {
+                background:url("../image/search.png")  no-repeat;
+                background-size: 100%;
+                display: inline-block;
+                .widthHeight(30px, 30px);
+                margin-top: 9px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+/*header 部分 end*/

@@ -8,6 +8,7 @@ import Movie from "./component/movie/movie";
 import Book from "./component/book/book";
 import Broadcast from "./component/broadcast/broadcast";
 import Search from "./component/search/search";
+import MoreChoose from "./component/moreChoose/moreChoose"
 ReactDOM.render(
     <HashRouter>
        <Switch>
@@ -16,6 +17,7 @@ ReactDOM.render(
             <Route path="/book" component={Book}></Route>
             <Route path="/broadcast" component={Broadcast}></Route>
             <Route path="/search" component={Search}></Route>
+            <Route path="/moreChoose" component={MoreChoose}></Route>
        </Switch>
    </HashRouter>,
 document.getElementById('root'));

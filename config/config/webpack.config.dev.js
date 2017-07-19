@@ -189,6 +189,7 @@ module.exports = {
               importLoaders: 1,
             },
           },
+          
           {
             loader: require.resolve('postcss-loader'),
             options: {
@@ -210,8 +211,8 @@ module.exports = {
             },
           },
           {
-            loader:require.resolve("less-loader")
-          }
+            loader:require.resolve("style-loader!css-loader!postcss-loader!less-loader")
+          },
         ],
       },
       // ** STOP ** Are you adding a new loader?

@@ -1,5 +1,5 @@
 /*公共部分 begin*/
-ul,ol,li,div,p,a,body,html,img,span,input,button {
+ul,ol,li,div,p,a,body,html,img,span,input,button,h1,h2,h3,h4,h5,h6 {
     padding: 0;
     margin: 0;
 }
@@ -96,3 +96,67 @@ html body {
     }
 }
 /*header 部分 end*/
+//  星星部分 begin
+.star {
+    span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+       
+    }
+    .full {
+        background: data-uri("../image/full.png");
+         background-size: 10px;
+    }
+    .empty {
+        background: data-uri("../image/empty.png");
+         background-size: 10px;
+    }
+}
+// 星星部分 end
+// 电影列表 begin
+.list {
+    margin-bottom: 20px;
+    .top {
+        height: 40px;
+        line-height: 40px;
+        width: 100%;
+        .title {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .more {
+            color: #42bd56;
+        }
+    }
+    .content {
+        overflow: hidden;
+        width: 100%;
+        ul {
+            width: 880px;
+            li {
+                width: 100px;
+                margin-right: 10px;
+              img {
+                  width: 100%;
+                  height: 130px;
+              }
+              h6 {
+                  width: 100%;
+                  font-size: 14px;
+                  font-weight: 400;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+              }
+              .rating {
+                  margin-left: 13px;
+              }
+              .rating>span {
+                margin-left: 3px;
+              }  
+            }
+        }
+    }
+}
+// 电影列表 end

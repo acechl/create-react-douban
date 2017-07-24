@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './common/header';
+import {createStore} from "redux";
 class App extends Component {
   render() {
     return (
@@ -11,6 +12,17 @@ class App extends Component {
       
       
     );
+  }
+  componentWillMount () {
+    let store = createStore(reducer);
+    let newState;
+    let reducer = (state,action)=>{
+      switch (action.type) {
+        case "loginTrue":
+          state = true;
+          return {...state,...newState}
+      }
+    }
   }
 }
 

@@ -10,6 +10,7 @@ let bounce = 300;
 let endX = 0;
 let htmlWidth = 0;
 let elementWidth = 0;
+let targetX = 0;
 // import store from "../redux/redux"
 class ClassifyState extends Component {
     constructor (props) {
@@ -40,6 +41,8 @@ class ClassifyState extends Component {
         })
     }
     componentDidMount () {
+        endX = this.props.endX;
+        targetX = this.props.targetX;
         // function todoAction (text) {
         //     return {
         //         type: "loginTrue",
@@ -96,39 +99,36 @@ class Classify extends Component{
         )
     }
      touchStart (event) {
+        htmlWidth = $("html").width();
+        elementWidth = $(event.currentTarget).width();
         startX = event.touches[0].pageX;
     } 
     touchMove (event) { 
         distanceX = event.touches[0].pageX - startX;
-        endX = endX + distanceX;
-        htmlWidth = $("html").width();
-        elementWidth = $(event.currentTarget).width();
-        if(endX > bounce) {
-            endX = 0;
-            return;
-        }else if(endX <= htmlWidth - elementWidth - bounce){
-            endX = htmlWidth-elementWidth;
-            return;
-        }else {
-            $(event.currentTarget).css("transform","translateX("+endX+"px)")
+        if(distanceX > bounce) {
+            distanceX = bounce
+        }else if(distanceX <= htmlWidth - elementWidth - bounce){
+            distanceX = htmlWidth- elementWidth - bounce;
         }
+        targetX = Number(endX)+ distanceX;
+        $(event.currentTarget).css({
+            "transform":"translateX("+targetX+"px)",
+        })
         
     }
     touchEnd (event) {
-        if(endX >= 0 && endX <= bounce){
+        endX = endX + distanceX;
+        if(endX > 0 && endX <= bounce){
             endX = 0;
+            
         }else if(endX> htmlWidth - elementWidth - bounce && endX <= htmlWidth - elementWidth) 
         {
             endX = htmlWidth - elementWidth;
         }
-         $(event.currentTarget).css({
+        $(event.currentTarget).css({
             "transform":"translateX("+endX+"px)",
             "translate": ".3s"
         });
-        
-    }
-    elementMove (target,distance) {
-        $(target).css("transform","translateX("+distance+")")
     }
     
 }

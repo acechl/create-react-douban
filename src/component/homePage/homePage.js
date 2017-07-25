@@ -7,9 +7,9 @@ class HomePage extends Component {
         return (
             <div>
                 <Header></Header>
-                <ClassifyState name="即将上映" url="https://api.douban.com/v2/movie/in_theaters"></ClassifyState>
-                <ClassifyState name="北美票房榜" url="https://api.douban.com/v2/movie/coming_soon"></ClassifyState>
-                <ClassifyState name="Top250" url="https://api.douban.com/v2/movie/top250"></ClassifyState>
+                <ClassifyState name="即将上映" url="https://api.douban.com/v2/movie/in_theaters" endX="0" targetX = "0" ></ClassifyState>
+                <ClassifyState name="北美票房榜" url="https://api.douban.com/v2/movie/coming_soon" endX="0" targetX = "0"></ClassifyState>
+                <ClassifyState name="Top250" url="https://api.douban.com/v2/movie/top250" endX="0" targetX = "0"></ClassifyState>
                 <div class="found">
                     <h6>发现好电影</h6>
                     <ul>

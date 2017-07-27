@@ -63,6 +63,27 @@ html body {
 .border(@width,@style,@color){
     border: @width @style @color;
 }
+.colorBorder(@color) {
+    color: @color;
+    border: 1px solid @color;
+    border-radius: 3px;
+}
+.clearfixBefore(){
+    content: "";
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+    display: block;
+}
+.clearfixAfter() {
+    content: "";
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+    display: block;
+}
 /*less公用函数 end*/
 /*header 部分 begin*/
 .header {
@@ -85,7 +106,7 @@ html body {
                 font-size: 14px;
             }
             .search {
-                background:url("../image/search.png")  no-repeat;
+                background:data-uri("../image/search.png")  no-repeat;
                 background-size: 100%;
                 display: inline-block;
                 .widthHeight(30px, 30px);
@@ -162,3 +183,241 @@ html body {
     }
 }
 // 电影列表 end
+// 发现电影 begin
+.green {
+    .colorBorder(#3BA94D);
+}
+.red {
+    .colorBorder(#CC3344)
+}
+.organe {
+    .colorBorder(#FFAC2D)
+}
+.lightRed {
+    .colorBorder(#FF4055);
+}
+.blue {
+    .colorBorder(#4F9DED);
+}
+.lightGreen {
+    .colorBorder(#42BD56);
+}
+.lightorgane {
+    .colorBorder(#FFC46C);
+}
+.lightBlue {
+    .colorBorder(#FFC46C)
+}
+
+.found {
+    width: 100%;
+    overflow-x: hidden;
+    .outsider {
+        overflow: hidden;
+        width: 100%;
+    }
+    h6 {
+        font-size: 16px;
+        font-weight: 400;
+    }
+    ul {
+        white-space: nowrap;
+        width: 100%;
+        overflow-x: auto;
+        
+        margin-top: 15px;
+        .block {
+            display: block;
+        }
+        li {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 8px;
+            a {
+                display: inline-block;
+                padding: 0 5px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+// 发现电影 end
+// 分类浏览 begin
+.ClassifyShow {
+    margin-bottom: 20px;
+    h6 {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 10px 0;
+    }
+    ul {
+        width: 100%;
+        li:nth-child(2n-1) {
+            border-right: 1px solid #eee;
+        }
+        li:first-child,li:nth-child(2) {
+            border-top: 1px solid #eee;
+        }
+        li {
+            width: 50%;
+            white-space: wrap;
+            display: inline-block;
+            height: 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            a {
+                display: block;
+                width: 100%;
+                color: #42bd56;
+                height: 40px;
+                line-height: 40px;
+                margin-left: 15px;
+                span {
+                    float: right;
+                    color: #ccc;
+                    .widthHeight(0.5rem,0.5rem);
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+}
+// 分类浏览 end
+// 底部 begin
+.footer {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    .download {
+        color: #42bd56;
+        text-align: center;
+        font-size: 14px;
+    }
+    .content {
+        display: inline-block;
+        p:first-child {
+            font-size: 28px;
+            line-height: 28px;
+            text-align: left;
+        }
+        p:last-child {
+            line-height: 20px;
+        }
+    }
+    .logo {
+        text-align: center;
+        margin-bottom: 10px;
+        a {
+            display: inline-block;
+            .widthHeight(40px,40px);
+            background: data-uri("../image/douban-app-logo.png");
+            background-size: 100%;
+            margin-right: 5px;
+        }
+    }
+}
+// 底部 end
+// 广播 begin
+    .broadcast {
+        .callback {
+            height: 68px;
+            width: 100%;
+            >div {
+                width:100%;
+                background: data-uri("../image/promotion_bg.jpg") no-repeat;
+                background-size: 100%;
+                position: absolute;
+                left: 0;
+                right: 0;
+                height: 68px;
+                p {
+                    line-height: 68px;
+                    color: #2CA532;
+                    margin-left: 0.3rem;
+                    font-size: 16px;
+                    display: inline-block;
+                }
+                >div {
+                    margin-right: 0.4rem;
+                    line-height: 68px;
+                    button {
+                        padding: 8px 10px;
+                        border-radius: 5px;
+                    }
+                    button:first-child {
+                        background-color: #42bd56;
+                        .border(1px,solid,#42bd56);
+                        color: #fff;
+                        font-size: 14px;
+                        margin-right: 10px;   
+                    }
+                    button:last-child {
+                        .border(1px,solid,#42bd56);
+                        color: #42bd56;
+                        background-color: #fff;
+                    }
+                }
+            }
+        }
+        .share {
+            width: 100%;
+            height: 60px;
+            
+            >div {
+                position: absolute;
+                left: 0px;
+                border-bottom: 1px solid #eee;
+                height: 60px;
+                padding: 10px 0.3rem;
+                width: 100%;
+            }
+            a {
+                display: block;
+                .fl {
+                    span:first-child {
+                        display: inline-block;
+                        background:data-uri("../image/user_large.jpg") no-repeat;
+                        background-size: 100%;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        vertical-align: middle;
+                    }
+                    span:last-child {
+                        font-size: 16px;
+                        margin-left: 10px;
+                        display: inline-block;
+                        line-height: 60px;
+                        color: #aaa;
+                    }
+                }
+                .fr {
+                    margin-right: 0.8rem;
+                    span {
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px;
+                        vertical-align: middle;
+                        margin-top: 15px;
+                    }
+                    span:first-child {
+                        background: data-uri("../image/ic_status_pen.svg");
+                        background-size: 100%;
+                        margin-right: 10px;
+                    }
+                    span:last-child {
+                        background: data-uri("../image/ic_status_camera.svg");
+                        background-size: 100%;
+                    }   
+                }
+            }
+        }
+        .comment {
+            width: 100%;
+        }
+        .footer {
+        }
+    }
+// 广播 end

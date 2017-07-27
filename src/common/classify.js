@@ -7,10 +7,10 @@ import Star from "./star"
 let startX = 0;
 let distanceX = 0;
 let bounce = 300;
-let endX = 0;
+// let endX;
 let htmlWidth = 0;
 let elementWidth = 0;
-let targetX = 0;
+let targetX;
 // import store from "../redux/redux"
 class ClassifyState extends Component {
     constructor (props) {
@@ -22,8 +22,7 @@ class ClassifyState extends Component {
     render () {
         return (
             <div>
-                <Classify name={this.props.name} value={this.state.datas}></Classify>  
-                <div>{this.state.login}</div>
+                <Classify name={this.props.name} value={this.state.datas}></Classify>
             </div>
         )
     }
@@ -36,13 +35,12 @@ class ClassifyState extends Component {
                 this.setState({
                     datas:response.subjects.splice(0,8)
                 })
-                console.log(this.state.datas)
             }
         })
     }
     componentDidMount () {
-        endX = this.props.endX;
-        targetX = this.props.targetX;
+        // endX = this.props.endX;
+        // targetX = this.props.targetX;
         // function todoAction (text) {
         //     return {
         //         type: "loginTrue",
@@ -56,11 +54,6 @@ class ClassifyState extends Component {
         // }
         // store.dispatch(todoAction());
         // store.subscribe(listen);
-    }
-    getInitialState () {
-        return {
-            login: false
-        }
     }
    
 }
@@ -98,11 +91,20 @@ class Classify extends Component{
             </div>
         )
     }
+    constructor (props) {
+        super (props);
+        this.state = {
+            endX: 0
+        }
+        this.touchMove = this.touchMove.bind(this);
+        this.touchStart = this.touchStart.bind(this);
+        this.touchEnd = this.touchEnd.bind(this);
+    }
      touchStart (event) {
         htmlWidth = $("html").width();
         elementWidth = $(event.currentTarget).width();
         startX = event.touches[0].pageX;
-    } 
+    }
     touchMove (event) { 
         distanceX = event.touches[0].pageX - startX;
         if(distanceX > bounce) {
@@ -110,26 +112,49 @@ class Classify extends Component{
         }else if(distanceX <= htmlWidth - elementWidth - bounce){
             distanceX = htmlWidth- elementWidth - bounce;
         }
-        targetX = Number(endX)+ distanceX;
+        targetX = Number(this.state.endX)+ distanceX;
         $(event.currentTarget).css({
             "transform":"translateX("+targetX+"px)",
         })
         
     }
     touchEnd (event) {
-        endX = endX + distanceX;
-        if(endX > 0 && endX <= bounce){
-            endX = 0;
-            
-        }else if(endX> htmlWidth - elementWidth - bounce && endX <= htmlWidth - elementWidth) 
+        let target = event.currentTarget;
+        let _this = this;
+        this.setState({
+            endX: Number(_this.state.endX) + distanceX
+        },function(){
+            judge()
+        })
+       let judge = ()=>{
+            if(this.state.endX > 0 && this.state.endX <= bounce){
+            this.setState({
+                endX: 0
+            },()=>{
+                change()
+            })
+        }else if(this.state.endX> htmlWidth - elementWidth - bounce && this.state.endX <= htmlWidth - elementWidth) 
         {
-            endX = htmlWidth - elementWidth;
+            this.setState({
+                endX: Number(htmlWidth) - elementWidth
+            },function(){
+               change()
+            })
         }
-        $(event.currentTarget).css({
-            "transform":"translateX("+endX+"px)",
-            "translate": ".3s"
-        });
+       }
+        let change = function(event){
+            $(target).css({
+                "transform":"translateX("+_this.state.endX+"px)",
+                "translate": ".3s"
+            });
+        }
+        
     }
-    
+    componentDidMount () {
+        // console.log(this);
+        // // targetX = 0;
+        // // endX = 0;
+        // console.log(this.state.endX)
+    }
 }
 export default ClassifyState;

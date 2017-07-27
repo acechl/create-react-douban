@@ -3,26 +3,102 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import {HashRouter,Route,Switch} from "react-router-dom";
-import HomePage from "./component/homePage/homePage";
-import Movie from "./component/movie/movie";
-import Book from "./component/book/book";
-import Broadcast from "./component/broadcast/broadcast";
-import Search from "./component/search/search";
-import MoreChoose from "./component/moreChoose/moreChoose";
-import MoreDetail from "./component/moreDetail/moreDetail"
-import PublicBroadcast from "./component/broadcast/publicBroadcast"
+// import Bundle from "./bundle.js";
+import {asyncComponent} from "./aync";
+import HomePage from "./component/homePage/homePage.js";
+
+const Broadcast = asyncComponent(()=>import("./component/broadcast/broadcast"))
+
+/*let Broadcast = ()=>(
+    <Bundle load={BroadcastContainer}>
+        {(Broadcast)=><Broadcast/>}
+    </Bundle>
+)*/
+// import HomePage from "./component/homePage/homePage";
+// import Movie from "./component/movie/movie";
+// import Book from "./component/book/book";
+// import Broadcast from "./component/broadcast/broadcast";
+// import Search from "./component/search/search";
+// import MoreChoose from "./component/moreChoose/moreChoose";
+// import MoreDetail from "./component/moreDetail/moreDetail"
+// import PublicBroadcast from "./component/broadcast/publicBroadcast"
 ReactDOM.render(
     <HashRouter>
        <Switch>
-            <Route exact path="/" component={HomePage}></Route>
-            <Route path="/movie" component={Movie}></Route>
-            <Route path="/book" component={Book}></Route>
-            <Route path="/broadcast" component={Broadcast}>
-                <Route path="/publicBroadcast" component={PublicBroadcast}></Route>
+           <Route exact path="/" component={HomePage} />
+            <Route path="/broadcast" component={Broadcast} />
+                {/*<Route exact path="/">
+                getComponent = {
+                    (nextState,callback)=>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/homePage/homePage").default)
+                        },"homePage")
+                    }
+                }
             </Route>
-            <Route path="/search" component={Search}></Route>
-            <Route path="/moreChoose" component={MoreChoose}></Route>
-            <Route path="/moreDetail" component={MoreDetail}></Route>
+            <Route path="/movie">
+                getComponent = {
+                    (nextState,callback)=>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/movie/movie").default)
+                        },"movie")
+                    }
+                }
+            </Route>
+            <Route path="/book">
+                getComponent = {
+                    (nextState,callback)=>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/book/book").default)
+                        },"book")
+                    }
+                }
+            </Route>
+            <Route path="/broadcast">
+                getComponent = {
+                    (nextState,callback)=>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/broadcast/broadcast").default)
+                        },"broadcast")
+                    }
+                }
+                <Route path="/publicBroadcast">
+                    getComponent = {
+                        (nextState,callback)=>{
+                            require.ensure([],(require)=>{
+                                callback(null,require("./component/broadcast/publicBroadcast").default)
+                            },"publicBroadcast")
+                        }
+                    }
+                </Route>
+            </Route>
+            <Route path="/search">
+                getComponent = {
+                    (nextState,callback)=>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/search/search").default)
+                        },"search")
+                    }
+                }
+            </Route>
+            <Route path="/moreChoose">
+                getComponent = {
+                    (nextState,callback)=>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/moreChoose/moreChoose").default)
+                        },"moreChoose")
+                    }
+                }
+            </Route>
+            <Route path="/moreDetail">
+                getComponent= {
+                    (nextState,callback) =>{
+                        require.ensure([],(require)=>{
+                            callback(null,require("./component/moreDetail/moreDetail").default)
+                        },"moreDetail")
+                    }
+                }
+            </Route>*/}
        </Switch>
    </HashRouter>,
 document.getElementById('root'));

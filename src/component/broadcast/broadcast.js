@@ -18,7 +18,7 @@ class Broadcast extends Component {
                 </div>
                 <div className="share clearfix">
                     <div>
-                        <Link to="/broadcast/publicBroadcast" className="clearfix">
+                        <Link to="broadcast/publicBroadcast" className="clearfix">
                         <div className="fl">
                             <span></span>
                             <span>分享生活点滴...</span>

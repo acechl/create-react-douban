@@ -3,17 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import {HashRouter,Route,Switch} from "react-router-dom";
-// import Bundle from "./bundle.js";
 import {asyncComponent} from "./aync";
 import HomePage from "./component/homePage/homePage.js";
-
-const Broadcast = asyncComponent(()=>import("./component/broadcast/broadcast"))
-
-/*let Broadcast = ()=>(
-    <Bundle load={BroadcastContainer}>
-        {(Broadcast)=><Broadcast/>}
-    </Bundle>
-)*/
+const Broadcast = asyncComponent(()=>import("./component/broadcast/broadcast"));
+const PublicBroadcast = asyncComponent(()=>import("./component/broadcast/publicBroadcast"));
+const Book = asyncComponent(()=>import("./component/book/book"));
 // import HomePage from "./component/homePage/homePage";
 // import Movie from "./component/movie/movie";
 // import Book from "./component/book/book";
@@ -25,8 +19,10 @@ const Broadcast = asyncComponent(()=>import("./component/broadcast/broadcast"))
 ReactDOM.render(
     <HashRouter>
        <Switch>
-           <Route exact path="/" component={HomePage} />
-            <Route path="/broadcast" component={Broadcast} />
+            <Route exact path="/" component={HomePage} />
+            <Route path="/broadcast/publicBroadcast" component={PublicBroadcast}></Route> 
+            <Route path="/broadcast" component={Broadcast}></Route>
+            <Route path="/book" component={Book}></Route>          
                 {/*<Route exact path="/">
                 getComponent = {
                     (nextState,callback)=>{

@@ -7,15 +7,14 @@ import Star from "./star"
 let startX = 0;
 let distanceX = 0;
 let bounce = 300;
-// let endX;
 let htmlWidth = 0;
 let elementWidth = 0;
 let targetX;
 // import store from "../redux/redux"
 class ClassifyState extends Component {
     constructor (props) {
-        super (props);
-        this.state = {
+        super(props);
+        this.state= {
             datas: []
         }
     }
@@ -39,8 +38,6 @@ class ClassifyState extends Component {
         })
     }
     componentDidMount () {
-        // endX = this.props.endX;
-        // targetX = this.props.targetX;
         // function todoAction (text) {
         //     return {
         //         type: "loginTrue",
@@ -151,10 +148,6 @@ class Classify extends Component{
         
     }
     componentDidMount () {
-        // console.log(this);
-        // // targetX = 0;
-        // // endX = 0;
-        // console.log(this.state.endX)
     }
 }
 export default ClassifyState;

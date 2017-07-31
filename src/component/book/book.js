@@ -20,9 +20,6 @@ class Book extends Component {
         })
         .then((response)=>{
             console.log(response)
-            // return response.json();
-        // }).then(function(res){
-        //     console.log(res);
         })
     }
 }

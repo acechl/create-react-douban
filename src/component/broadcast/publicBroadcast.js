@@ -1,6 +1,7 @@
+import cs from "classnames";
 import React,{Component} from "react";
 import {Link} from "react-router-dom";
-import cs from "classnames";
+import "../../index.less";
 class PublicBroadcast extends Component {
     constructor (props) {
         super (props);
@@ -8,42 +9,68 @@ class PublicBroadcast extends Component {
             num: 140,
             value: "",
             name: ["野原新之助","风间彻","樱田妮妮","正男","啊呆"],
-            hiden: true
+            hiden: true,
+            image:""
         };
         this.someoneShow = this.someoneShow.bind(this);
-        this.someoneHide = this.someoneHide.bind(this);
         this.wordChange = this.wordChange.bind(this);
         this.imageChange = this.imageChange.bind(this);
         this.topicChange = this.topicChange.bind(this);
         this.mouseEnter = this.mouseEnter.bind(this);
-        this.mouseLeave = this.mouseLeave.bind(this);
+        this.submitBroadcast = this.submitBroadcast.bind(this);
     }
     wordChange () {
-        this.setState= {
-            value : this.refs.textarea.value
-        }
+        this.setState({
+            value : this.refs.textarea.value,
+            num: 140-this.refs.textarea.value.length
+        })
     }
     someoneShow () {
-        this.setState={
+        console.log("in");
+        this.setState({
             hiden: false
-        }
-    }
-    someoneHide () {
-        this.setState={
-            hiden: true
-        }
+        })
     }
     imageChange () {
         
     }
     topicChange () {
-        
+        this.setState({
+            value: this.state.value + "#请输入你的话题#",
+            num: this.state.num - 9
+        })
     }
-    mouseEnter () {
-
+    submitBroadcast () {
+        if(this.state.value == "") return;
+        let item = localStorage.getItem("item") || 0;
+        let time = new Date().getTime();
+        let obj = {
+            text: this.state.value,
+            image: this.state.image,
+            time: time,
+            like: 0,
+            comment: 0,
+            transport: 0,
+            id:item
+        }
+        localStorage.setItem("broadcast"+item,JSON.stringify(obj));
+        this.setState({
+            value: "",
+            image: "",
+            num: 140,
+            
+        })
+        localStorage.setItem("item",Number(item)+1);
+        this.props.history.push("/broadcast");
     }
-    mouseLeave () {
-
+    mouseEnter (event) {
+        this.setState({
+            value: this.state.value + "@" + event.currentTarget.innerText,
+            hiden: true,
+            num: this.state.num - 1 - event.currentTarget.innerText.length
+        },()=>{
+            console.log(this.state.value)
+        })
     }
     render () {
         return (
@@ -51,12 +78,12 @@ class PublicBroadcast extends Component {
                 <div className="top">
                     <Link to="/broadcast">取消</Link>
                     <span>发广播</span>
-                    <span>发布</span>
+                    <span onClick={this.submitBroadcast}>发布</span>
                 </div>
                 <form>
                     <div>
                         <div className="content">
-                            <textarea ref="textarea" placeholder="分享生活点滴..." name="content" onChange={this.wordChange}></textarea>
+                            <textarea ref="textarea" placeholder="分享生活点滴..." name="content" onChange={this.wordChange} value={this.state.value}></textarea>
                             <ul className="imageList"></ul>
                         </div>
                     </div>
@@ -65,12 +92,16 @@ class PublicBroadcast extends Component {
                             <input type="file" accept="image/png,image/gif,image/jpg,image/jepg" name="image" onChange={this.imageChange}/>
                         </div>
                         <div className="fl pr">
-                            <span className="someone" onMouseEnter={this.someoneShow} onMouseLeave={this.someoneHide}></span>
-                            <ul className= cs({"someoneName":true,"pa":true,"hiden":this.state.hiden})>
+                            <span className="someone" onClick={this.someoneShow}></span>
+                            <ul className = {cs({
+                                "someoneName":true,
+                                "pa":true,
+                                "hiden":this.state.hiden
+                            })}>
                                 {
-                                    this.state.name.map((value)=>{
+                                    this.state.name.map((value,index)=>{
                                         return (
-                                            <li onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>{value}</li>
+                                            <li onClick={this.mouseEnter} key={index}>{value}</li>
                                         )
                                     })
                                 }

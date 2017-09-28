@@ -5,7 +5,7 @@ import Footer from "../../common/footer";
 class HomePage extends Component {
     render(){
         return (
-            <div>
+            <div className="page">
                 <Header></Header>
                 <ClassifyState name="即将上映" url="https://api.douban.com/v2/movie/in_theaters" ></ClassifyState>
                 <ClassifyState name="北美票房榜" url="https://api.douban.com/v2/movie/coming_soon" ></ClassifyState>

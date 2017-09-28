@@ -144,6 +144,7 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
+          // /\.less$/
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -157,7 +158,7 @@ module.exports = {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve('url-loader'),
         options: {
-          limit: 10000,
+          limit: 10000, 
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
@@ -174,6 +175,10 @@ module.exports = {
           cacheDirectory: true,
         },
       },
+      // {
+      //   test: /\.less$/,
+      //   loader: "style-loader!css-loader!less-loader"
+      // },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.

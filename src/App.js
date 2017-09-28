@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
+import "./index.less";
 import Header from './common/header';
-import {createStore} from "redux";
+// import {createStore} from "redux";
 class App extends Component {
   render() {
     return (
@@ -13,17 +14,17 @@ class App extends Component {
       
     );
   }
-  componentWillMount () {
-    let store = createStore(reducer);
-    let newState;
-    let reducer = (state,action)=>{
-      switch (action.type) {
-        case "loginTrue":
-          state = true;
-          return {...state,...newState}
-      }
-    }
-  }
+  // componentWillMount () {
+  //   let store = createStore(reducer);
+  //   let newState;
+  //   let reducer = (state,action)=>{
+  //     switch (action.type) {
+  //       case "loginTrue":
+  //         state = true;
+  //         return {...state,...newState}
+  //     }
+  //   }
+  // }
 }
 
 

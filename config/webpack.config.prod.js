@@ -143,6 +143,7 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
+          /\.less$/
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -158,6 +159,10 @@ module.exports = {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]',
         },
+      },
+      {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader"
       },
       // Process JS with Babel.
       {

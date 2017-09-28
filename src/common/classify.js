@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import "../less/style.less";
+import "../index.less";
 import {Link} from "react-router-dom";
 import 'whatwg-fetch';
 import $ from "jquery";
@@ -30,9 +30,10 @@ class ClassifyState extends Component {
             type:"post",
             dataType:"jsonp",
             url:this.props.url,
-            success: response=> {
+            success: response => {
+                console.log(response)
                 this.setState({
-                    datas:response.subjects.splice(0,8)
+                    datas: response.subjects.splice(0,8)
                 })
             }
         })
@@ -67,8 +68,8 @@ class Classify extends Component{
                         {
                             this.props.value.map(item=>{
                                 return (
-                                    <li className="fl">
-                                        <Link to={"/moreDetail:"+item.id}>
+                                    <li className="fl" key={item.id}>
+                                        <Link to={"/moreDetail/"+item.id}>
                                             <div>
                                                 <img src={item.images.large} alt=""/>
                                                 <h6>{item.title}</h6>
@@ -146,8 +147,6 @@ class Classify extends Component{
             });
         }
         
-    }
-    componentDidMount () {
     }
 }
 export default ClassifyState;

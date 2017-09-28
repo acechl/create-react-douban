@@ -1,101 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
+import "./index.less";
 import registerServiceWorker from './registerServiceWorker';
-import {HashRouter,Route,Switch} from "react-router-dom";
+import {BrowserRouter,Route,Switch} from "react-router-dom";
 import {asyncComponent} from "./aync";
 import HomePage from "./component/homePage/homePage.js";
 const Broadcast = asyncComponent(()=>import("./component/broadcast/broadcast"));
 const PublicBroadcast = asyncComponent(()=>import("./component/broadcast/publicBroadcast"));
 const Book = asyncComponent(()=>import("./component/book/book"));
-// import HomePage from "./component/homePage/homePage";
-// import Movie from "./component/movie/movie";
-// import Book from "./component/book/book";
-// import Broadcast from "./component/broadcast/broadcast";
-// import Search from "./component/search/search";
-// import MoreChoose from "./component/moreChoose/moreChoose";
-// import MoreDetail from "./component/moreDetail/moreDetail"
-// import PublicBroadcast from "./component/broadcast/publicBroadcast"
+const Register = asyncComponent(()=>import("./component/register/register"));
+const MoreDetail = asyncComponent(()=>import ("./component/movie/moreDetail"));
+const Type = asyncComponent(()=>import("./component/movie/type"));
+const MoreComment = asyncComponent(()=>import("./component/comment/moreComment.js"));
+const Login = asyncComponent(()=>import("./component/register/login"));
+const IsDone = asyncComponent(()=>import("./component/comment/isDone"));
+const Wanted = asyncComponent(()=>import("./component/comment/wanted"));
+const Mine = asyncComponent(()=>import("./component/register/mine"));
+const Search = asyncComponent(()=>import("./component/search/search"));
+const Result = asyncComponent(()=>import("./component/search/result"))
 ReactDOM.render(
-    <HashRouter>
+    // 对于网页项目，存在browserRouter和HashRouter两种组件 当存在服务区来管理动态请求时  则使用browserRouter 当为静态网站是 则hashRouter
+    // path为/broadcast时  /broadcast和/broadcast/publicBroadcast均会匹配 这时有两种方法  第一种是将path为/broadcast/publicBroadcast的Route放在前面 这样就不会匹配到/broadcast  第二种就是在/broadcast 中添加exact 这样就/broadcast就不会匹配到/broadcast/publicBroadcast了
+    <BrowserRouter>
        <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route path="/broadcast" component={Broadcast} exact></Route>
             <Route path="/broadcast/publicBroadcast" component={PublicBroadcast}></Route> 
-            <Route path="/broadcast" component={Broadcast}></Route>
-            <Route path="/book" component={Book}></Route>          
-                {/*<Route exact path="/">
-                getComponent = {
-                    (nextState,callback)=>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/homePage/homePage").default)
-                        },"homePage")
-                    }
-                }
-            </Route>
-            <Route path="/movie">
-                getComponent = {
-                    (nextState,callback)=>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/movie/movie").default)
-                        },"movie")
-                    }
-                }
-            </Route>
-            <Route path="/book">
-                getComponent = {
-                    (nextState,callback)=>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/book/book").default)
-                        },"book")
-                    }
-                }
-            </Route>
-            <Route path="/broadcast">
-                getComponent = {
-                    (nextState,callback)=>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/broadcast/broadcast").default)
-                        },"broadcast")
-                    }
-                }
-                <Route path="/publicBroadcast">
-                    getComponent = {
-                        (nextState,callback)=>{
-                            require.ensure([],(require)=>{
-                                callback(null,require("./component/broadcast/publicBroadcast").default)
-                            },"publicBroadcast")
-                        }
-                    }
-                </Route>
-            </Route>
-            <Route path="/search">
-                getComponent = {
-                    (nextState,callback)=>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/search/search").default)
-                        },"search")
-                    }
-                }
-            </Route>
-            <Route path="/moreChoose">
-                getComponent = {
-                    (nextState,callback)=>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/moreChoose/moreChoose").default)
-                        },"moreChoose")
-                    }
-                }
-            </Route>
-            <Route path="/moreDetail">
-                getComponent= {
-                    (nextState,callback) =>{
-                        require.ensure([],(require)=>{
-                            callback(null,require("./component/moreDetail/moreDetail").default)
-                        },"moreDetail")
-                    }
-                }
-            </Route>*/}
+            <Route path="/book" component={Book}></Route>    
+            <Route path="/moreDetail/:id" component={MoreDetail}></Route>
+            <Route path="/movie" component={HomePage}></Route>
+            <Route path="/type/:id" component={Type}></Route>
+            <Route path="/moreComment/:id" component={MoreComment}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/isDone/:title" component={IsDone}></Route>
+            <Route path="/wanted/:title/:type" component={Wanted}></Route>
+            <Route path="/mine" component={Mine}></Route>
+            <Route path="/search" component={Search}></Route>
+            <Route path="/result/:search" component={Result}></Route>
        </Switch>
-   </HashRouter>,
+   </BrowserRouter>,
 document.getElementById('root'));
 registerServiceWorker();

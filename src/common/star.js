@@ -13,9 +13,9 @@ class Star extends Component {
         return (
             <div className="star fl">
                 {
-                    className.map(value=>{
+                    className.map((value,index)=>{
                         return (
-                            <span className={value}></span>
+                            <span className={value} key={index}></span>
                         )
                     })
                 }
